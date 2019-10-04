@@ -1,0 +1,48 @@
+.ui-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#game-area{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.row{
+    display: flex;
+    width: 50em;
+    height: 3em;
+    /* border: 1px black solid; */
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+
+}
+.column{
+    padding-top: 15px;
+    width: 68;
+    font-size: 15px;
+    text-align: center;
+    border: 1px black solid;
+    flex-grow: 1;
+}
+.mine{
+    background-color: rgb(87, 75, 197);
+}
+.column:hover{
+    background-color: aqua;
+    opacity: 0.2;
+    cursor: pointer;
+}
+.check{
+    cursor: unset;
+    background-color: rgba(110, 33, 33, 0.596);
+}
