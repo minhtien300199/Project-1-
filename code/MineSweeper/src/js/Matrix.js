@@ -1,18 +1,19 @@
 var currentMatrix=[[],[],[],[],[],[],[],[],[],[],[],[]];
+var mineStack=[];
+var markCount=0;
+var mineMap=15;
 class Matrix {
     constructor(){
         this.matrix=[[],[],[],[],[],[],[],[],[],[],[],[]];
-        this.bomb=10;
+        this.bomb=mineMap;
     }
     generateMatrix(){
         var board = new Board();
         for (let i = 0; i < board.noRow; i++) {
             for (let j = 0; j < board.noCol; j++) {
                 this.matrix[i][j]=0;
-                //document.getElementsByClassName(`column ${i}`)[0].children[j].innerHTML='0';
             }
         }
-        console.log(this.matrix);
     }
     placeMine(){
         var i=0;
@@ -21,7 +22,8 @@ class Matrix {
             var row = Math.floor(Math.random() * 11)+ Math.round(Math.random());
             if (this.matrix[row][col]==0) {
                 this.matrix[row][col]=-1;
-                document.getElementsByClassName(`row ${row}`)[0].children[col].classList.add('mine');
+                mineStack.push({row:row,col:col});
+                //document.getElementsByClassName(`row ${row}`)[0].children[col].classList.add('mine');
                 i++;
             }
         }
@@ -31,8 +33,7 @@ class Matrix {
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
-    var matrix= new Matrix();
-    matrix.generateMatrix();
-    matrix.placeMine();
-    currentMatrix=matrix.matrix;
+    var panel = new Panel();
+    panel.levelSelect();
+
 })

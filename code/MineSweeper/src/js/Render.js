@@ -12,10 +12,15 @@ class Board {
             var innerDiv = document.createElement('div');
             innerDiv.setAttribute('class','row '+i);
             for (let j = 0; j < this.noCol; j++) {
-                var innerRow= document.createElement('div');
-                innerRow.setAttribute('class','column '+ j);
-                innerDiv.appendChild(innerRow);
-                innerRow.addEventListener('click',()=>{cell.cellClick(i,j)});
+                var innerCol= document.createElement('div');
+                innerCol.setAttribute('class','column '+ j);
+                innerDiv.appendChild(innerCol);
+                innerCol.addEventListener('click',()=>{cell.cellClick(i,j)});
+                innerCol.addEventListener('contextmenu', function(ev) {
+                    ev.preventDefault();
+                    cell.placeMark(i,j);
+                    return false;
+                }, false);
             }
             container.appendChild(innerDiv);
         }
@@ -24,5 +29,4 @@ class Board {
 document.addEventListener('DOMContentLoaded',()=>{
     var board= new Board();
     board.render();
-    
 });
