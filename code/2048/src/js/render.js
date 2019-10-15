@@ -1,6 +1,8 @@
 // var DOMcollector={
 //     gameContainer:document.querySelector('.game-container')
 // };
+var moving=0;
+var startFlag=0;
 var map = {
     38: 0, // Up
     39: 1, // Right
@@ -11,6 +13,7 @@ var map = {
     74: 2,
     72: 3  
 };
+var gameOver=0;
 var stackBlock=[];
 var curMatrix=[
                 [0,0,0,0],
