@@ -5,6 +5,12 @@
     align-items: center;
     height: 20%;
 }
+body{
+    background-image: url(background2.jpg);
+background-position: center;
+background-repeat: no-repeat;
+ background-size:cover; 
+}
 .main{
     height: 80%;
     width: 100%;
