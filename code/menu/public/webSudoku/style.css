@@ -1,0 +1,330 @@
+.title {
+  font-size: 60px;
+}
+
+#base {
+  background-color: rgba(224, 224, 224, 0.596);
+  font-style: initial;
+  cursor: unset;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  width: 80vw;
+  margin: auto;
+}
+
+.row {
+  /* width: 80%; */
+  display: flex;
+  flex-direction: row;
+  height: 10vh;
+  border-top: 1px solid black;
+  /* border-left: 1px solid black; */
+}
+.row:last-child {
+  border-bottom: 1px solid black;
+}
+
+.row.row-even {
+  border-bottom: 2px solid black;
+}
+.row.row-even-2 {
+  border-top: 2px solid black;
+}
+.col {
+  display: flex;
+  width: calc(100% / 9);
+  /* border-bottom: 1px solid black; */
+  border-left: 1px solid black;
+  font-size: 1.5em;
+  margin: 1px;
+  flex-direction: column;
+}
+.col:last-child {
+  border-right: 1px solid black;
+}
+
+.col.col-even {
+  border-right: 2px solid black;
+}
+
+.col.col-even-2 {
+  border-left: 2px solid black;
+}
+
+#touchpad {
+  padding: 10px;
+  height: 50px;
+  border: 1px solid black;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  height: 67.5vh;
+  /* width: 8vh; */
+  margin: 0;
+}
+.cell {
+  border: 1px solid black;
+  margin-bottom: 5px;
+  width: 100%;
+  height: 50px;
+  font-size: 2em;
+}
+.cell-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.cell-number:hover {
+  cursor: pointer;
+  background-color: rgba(255, 217, 0, 0.404);
+}
+
+.active {
+  background-color: rgba(177, 248, 183, 0.63);
+  cursor: pointer;
+}
+
+.row .col {
+  cursor: pointer;
+}
+
+.row .col:hover {
+  background: rgba(189, 165, 165, 0.719);
+}
+.hidden {
+  visibility: hidden;
+}
+
+
+.wrong {
+  color: rgb(255, 0, 0);
+}
+
+/* #undoBtn {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  position: absolute;
+  top: 73vh;
+  right: 2vw;
+} */
+
+
+#drafts {
+  border: 1px solid blue;
+  width: 70%;
+  height: 60%;
+  margin: 10px;
+  padding: 12px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+.draft-num {
+  font-size: 3em;
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid green;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+}
+.left-menu,
+.right-menu {
+  display: flex;
+  width: 10vw;
+  flex-direction: column;
+}
+
+.btn {
+  display: inline-block;
+  padding: 15px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 7px;
+  box-shadow: 0 9px #999;  
+  margin: 5px;
+  min-width: 80px;
+}
+.btn:hover {
+  background-color: #3e8e41;
+}
+.btn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.timer {
+  width: 80px;
+  height: 40px;
+  padding: 5px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1em;
+  background-image: url(./backGround.jpg);
+  background-size: cover;
+  background-attachment: scroll;
+  color: white;
+  border-radius: 15px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #00000085;
+  z-index: 10;
+}
+.modal {
+  z-index: 11;
+  width: 50%;
+  height: 50%;
+  background: white;
+  margin: auto;
+  position: fixed;
+  left: calc(50% - 25vw);
+  top: calc(50% - 25vh);
+}
+.row-drafts{
+  display: flex;
+  flex-direction: row;
+
+}
+.cell-drafts{
+  font-size:18px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: 0.5em;
+}
+
+.center-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.Pause{
+  width: 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ovl {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #09bdca;
+  z-index: 10;
+}
+
+.startgame{
+  width: 90%;
+}
+
+#selector {
+  /* width: 44vw; */
+  /* padding: 5px; */
+  /* margin: 2vh; */
+}
+/* #bg{
+  background-image: url(./hanyijie_sky_scenery_ship_anime_art_104162_1920x1080.jpg)
+} */
+#textBox {
+  /* width: 30vw;
+  height: 3vh; */
+}
+/* input:empty{
+  border: 1px red solid;
+} */
+#endGame{
+  display: flex;
+  flex-flow: row;
+  flex-direction: column;
+}
+#gameRelsult {
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+  
+.form {
+  padding: 15px;
+  width: calc(100% - 30px);
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-bottom: 15px;
+}
+.form-group label {
+  display: flex;  
+  padding-right: 10px;
+}
+.form-group input,
+.form-group select  {
+  display: flex;  
+  flex-grow: 1;
+  line-height: 20px;
+}
+.form-group select {
+  height: 26px;
+}
+.form-group .form-submit {
+  margin: auto;
+}
+#playAgainBtn {
+  width: 90%;
+  margin: auto;
+}
+.relsult{
+  padding-top: 15px;
+}
+.note{
+  font-size: 30px;
+  color: blue;
+}

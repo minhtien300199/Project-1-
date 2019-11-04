@@ -2,17 +2,14 @@ import React, { Component } from 'react'
 import Modal from './Panel';
 import Img from '../pics/SudokuGif.gif'
 export default class SudokuSite extends Component {
-    state={top:'',left:'',img:Img,hidden:'hidden'}
+    state={img:Img,hidden:'hidden',index:0}
     handlingMouseMove=(e)=>{
-        this.setState({top:e.clientY,left:e.clientX,hidden:'',des:`
+        this.setState({hidden:'',des:`
         là trò chơi điền số sao cho trong 1 ô vuông hoặc dòng cột từ 1 tới 9 không có số nào được trùng nhau`});
     }
     renderModal(){
             return (<Modal
-                height='251'
-                width='251'
-                top={this.state.top}
-                left={this.state.left}
+                index={this.state.index}
                 img={this.state.img}
                 hidden={this.state.hidden}
                 des={this.state.des}
@@ -23,14 +20,13 @@ export default class SudokuSite extends Component {
     }
     render() {
         return (
-            <div>
+            <div onMouseMove={this.handlingMouseMove} onMouseOut={()=>{this.setState({hidden:'hidden'});this.renderModal()}}>
                 {this.renderModal()}
-                <div className="sudo-title" onMouseMove={this.handlingMouseMove} onMouseOut={()=>{this.setState({hidden:'hidden'});this.renderModal()}}>
+                <div className="sudo-title" >
                 SudokuSite
                 </div>
-                <div className="sudo-pic">
-                <a href="https://sudoku-app-tienle.netlify.com/" >
-                    Click Here
+                <div className="btnContainer">
+                <a href="/webSudoku" className="button button-play">
                 </a>
                 </div>
             </div>

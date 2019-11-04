@@ -15,6 +15,25 @@ class Matrix {
       }
     }
   }
+  checkLose(){
+    //check ngang
+    for (let i = 0; i < curMatrix.length; i++) {
+      for (let j = 0; j < 3; j++) {
+        if (curMatrix[i][j]=== curMatrix[i][j+1]) {
+          return 0;
+        }
+      }
+    }
+    //check dọc
+    for (let j = 0; j < curMatrix.length; j++) {
+      for (let i = 0; i < 3; i++) {
+        if (curMatrix[i][j]===curMatrix[i+1][j]) {
+          return 0;
+        }        
+      }      
+    }
+    return 1;
+  }
   validMatrix(){
     var temp=0;
     for (let i = 0; i < curMatrix.length; i++) {
@@ -27,7 +46,11 @@ class Matrix {
     if (temp>0) {
       return 1;
     }else if (temp==0) {
-      return 0;
+      var isLose = this.checkLose();
+      if (isLose===1) {
+        return 0;
+      }
+      return 1;
     }
   }
   saveMatrix(){
@@ -43,6 +66,13 @@ class Matrix {
           return 1;
         }
       }
+    }
+    var checkMove= this.validMatrix();
+    if (checkMove===0) {
+      console.log('end game');
+      var panel= new Panel();
+      panel.createPanel('lose');
+      gameOver=1;
     }
     return 0;
   }
@@ -323,6 +353,8 @@ class Matrix {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  var panel = new Panel();
+  panel.startGame();
   var board = new Board();
   board.render();
   var matrix = new Matrix();

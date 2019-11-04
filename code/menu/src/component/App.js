@@ -10,19 +10,19 @@ export default class App extends Component {
     return (
       <div>
         <div className="ui-header">
-          <div className="header-content">Web Game</div>
+          <div className="title"><h1>Web Game</h1></div>
         </div>
         <div className="ui-main">
-          <div className="grid-item">
+          <div className="card1">
             <SudokuSite />
           </div>
-          <div className="grid-item">
+          <div className="card2">
             <Snake />
           </div>
-          <div className="grid-item">
+          <div className="card3">
             <XepSo />
           </div>
-          <div className="grid-item">
+          <div className="card4">
             <MineSweeper />
           </div>
         </div>

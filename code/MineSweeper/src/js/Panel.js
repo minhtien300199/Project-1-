@@ -28,6 +28,9 @@ class Panel {
         var btnHome = document.createElement('button');
         btnHome.setAttribute('class','btn home ');
         btnHome.innerHTML='Home';
+        btnHome.addEventListener('click',()=>{
+            history.go(-1);
+        })
         innerDiv.appendChild(panelText);
         innerDiv.appendChild(btnRetry);
         innerDiv.appendChild(btnHome);
@@ -48,6 +51,12 @@ class Panel {
         var box = document.createElement('div');
         box.setAttribute('class','box');
         var selector = document.createElement('select');
+        var home=document.createElement('button');
+        home.setAttribute('class','btn home');
+        home.innerHTML='Home';
+        home.addEventListener('click',()=>{
+            history.go(-1);
+        })
         for (let i = 0; i < level.length; i++) {
             var options= document.createElement('option');
             options.setAttribute('value',`${level[i]}`);
@@ -75,6 +84,7 @@ class Panel {
         innerDiv.setAttribute('id','panel');
         innerDiv.appendChild(selector);
         innerDiv.appendChild(button);
+        innerDiv.append(home);
         overlay.appendChild(innerDiv);
         container.appendChild(overlay);
     }

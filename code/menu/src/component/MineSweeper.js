@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
 import React, { Component } from 'react'
 import Modal from './Panel'
 import Img from '../pics/minesweeperGif.gif'
@@ -9,8 +10,6 @@ export default class MineSweeper extends Component {
     }
     renderModal(){
             return (<Modal
-                height='314'
-                width='298'
                 top={this.state.top}
                 left={this.state.left}
                 img={this.state.img}
@@ -23,12 +22,14 @@ export default class MineSweeper extends Component {
     }
     render() {
         return (
-            <div>
+            <div onMouseMove={this.handlingMouseMove} onMouseOut={()=>{this.setState({hidden:'hidden'});this.renderModal()}}>
                 {this.renderModal()}
-                <div className="minesweeper-title" onMouseMove={this.handlingMouseMove} onMouseOut={()=>{this.setState({hidden:'hidden'});this.renderModal()}}>
+                <div className="minesweeper-title" >
                 MineSweeper
                 </div>
-                <a href="/MineSweeper"> Click Here</a>
+                <div className="btnContainer">
+                <a href="/MineSweeper" className="button button-play"></a>
+                </div>
             </div>
             
         )

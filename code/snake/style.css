@@ -16,3 +16,18 @@
     align-items: center;
     justify-content: center;
 }
+.footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.home ,.new-game{
+    color: rgb(107, 105, 212);
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+.home:hover,.new-game:hover{
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
+    width: +10%;
+}

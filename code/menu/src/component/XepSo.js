@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import Modal from "./Panel";
 import Img from "../pics/XepSoGif.gif";
 import "../style/test.css";
+
 export default class XepSo extends Component {
   state = {
     top: "",
     left: "",
+    index:3,
     img: Img,
     hidden: "hidden",
     des: "2048 là trò chơi gộp số sao cho số lớn nhất là 2048 thì thắng game."
@@ -16,8 +18,7 @@ export default class XepSo extends Component {
   renderModal() {
     return (
       <Modal
-        height='368'
-        width='368'
+        index={this.state.index}
         top={this.state.top}
         left={this.state.left}
         img={this.state.img}
@@ -31,21 +32,23 @@ export default class XepSo extends Component {
   }
   render() {
     return (
-      <div>
+      <div           
+      onMouseMove={this.handlingMouseMove}
+      onMouseOut={() => {
+        this.setState({ hidden: "hidden" });
+        this.renderModal();
+      }}>
         {this.renderModal()}
         <div
         className="xepSo-title"
-          onMouseMove={this.handlingMouseMove}
-          onMouseOut={() => {
-            this.setState({ hidden: "hidden" });
-            this.renderModal();
-          }}
+
         >
           2048
         </div>
-        <a href="/2048">
-          Click Here
+        <div className="btnContainer">
+        <a href="/2048" className="button button-play">
         </a>
+        </div>
       </div>
     );
   }

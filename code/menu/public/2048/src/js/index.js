@@ -1,140 +1,78 @@
-/* eslint-disable no-undef */
 class Matrix {
   constructor() {
-    this.preMatrix = [[], [], [], []];
+    this.preMatrix=[[],[],[],[]];
   }
 
   getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-  checkWin() {
+  checkWin(){
     for (let i = 0; i < curMatrix.length; i++) {
       for (let j = 0; j < curMatrix.length; j++) {
-        if (curMatrix[i][j] == 2048) {
-          var panel = new Panel();
-          panel.createPanel("win");
+        if (curMatrix[i][j]==2048) {
+          console.log('win!');
         }
       }
     }
   }
-  validMatrix() {
-    var temp = 0;
+  checkLose(){
+    //check ngang
+    for (let i = 0; i < curMatrix.length; i++) {
+      for (let j = 0; j < 3; j++) {
+        if (curMatrix[i][j]=== curMatrix[i][j+1]) {
+          return 0;
+        }
+      }
+    }
+    //check dọc
+    for (let j = 0; j < curMatrix.length; j++) {
+      for (let i = 0; i < 3; i++) {
+        if (curMatrix[i][j]===curMatrix[i+1][j]) {
+          return 0;
+        }        
+      }      
+    }
+    return 1;
+  }
+  validMatrix(){
+    var temp=0;
     for (let i = 0; i < curMatrix.length; i++) {
       for (let j = 0; j < curMatrix.length; j++) {
-        if (curMatrix[i][j] == 0) {
+        if (curMatrix[i][j]==0) {
           temp++;
         }
       }
     }
-    if (temp > 0) {
+    if (temp>0) {
       return 1;
-    } else if (temp == 0) {
-      return 0;
-    }
-  }
-  checkLose() {
-    if (this.validMatrix() == 0) {
-      for (let i = 0; i < curMatrix.length; i++) {
-        for (let j = 0; j < curMatrix.length; j++) {
-          if ((i == 0 && j == 0) || (i == curMatrix.length - 1 && j == 0)) {
-            if (i == 0 && j == 0) {
-              if (curMatrix[i][j] == curMatrix[i + 1][j]) {
-                return 1;
-              }
-              if (curMatrix[i][j] == curMatrix[i][j + 1]) {
-                return 1;
-              }
-            } else if (i == 0 && j == curMatrix.length) {
-              if (curMatrix[i][j] == curMatrix[i + 1][j]) {
-                return 1;
-              }
-              if (curMatrix[i][j] == curMatrix[i][j - 1]) {
-                return 1;
-              }
-            }
-          } else if (i == 0) {
-            if (curMatrix[i][j] == curMatrix[i + 1][j]) {
-              return 1;
-            }
-            if (curMatrix[i][j] == curMatrix[i][j - 1]) {
-              return 1;
-            }
-            if (curMatrix[i][j] == curMatrix[i][j + 1]) {
-              return 1;
-            }
-          } else if (
-            (i == curMatrix.length - 1 && j == 0) ||
-            (i == curMatrix.length - 1 && j == curMatrix.length - 1)
-          ) {
-            if (curMatrix[i][j] == curMatrix[i - 1][j]) {
-              return 1;
-            }
-            if (curMatrix[i][j] == curMatrix[i][j + 1]) {
-              return 1;
-            }
-          } else if (i == curMatrix.length - 1) {
-            if (curMatrix[i][j] == curMatrix[i][j - 1]) {
-              return 1;
-            }
-            if (curMatrix[i][j] == curMatrix[i][j + 1]) {
-              return 1;
-            }
-            if (curMatrix[i][j] == curMatrix[i - 1][j]) {
-              return 1;
-            }
-          } else {
-            if (j == 0) {
-              if (curMatrix[i][j] == curMatrix[i][j + 1]) {
-                return 1;
-              }
-              if (curMatrix[i][j] == curMatrix[i - 1][j]) {
-                return 1;
-              }
-              if (curMatrix[i][j] == curMatrix[i + 1][j]) {
-                return 1;
-              }
-            } else if (j == curMatrix.length - 1) {
-              if (curMatrix[i][j] == curMatrix[i - 1][j]) {
-                return 1;
-              }
-              if (curMatrix[i][j] == curMatrix[i + 1][j]) {
-                return 1;
-              }
-              if (curMatrix[i][j] == curMatrix[i][j - 1]) {
-                return 1;
-              }
-            } else {
-              if (curMatrix[i][j] == curMatrix[i - 1][j]) {
-                return 1;
-              }
-              if (curMatrix[i][j] == curMatrix[i + 1][j]) {
-                return 1;
-              }
-              if (curMatrix[i][j] == curMatrix[i][j - 1]) {
-                return 1;
-              }
-              if (curMatrix[i][j] == curMatrix[i][j + 1]) {
-                return 1;
-              }
-            }
-          }
-        }
+    }else if (temp==0) {
+      var isLose = this.checkLose();
+      if (isLose===1) {
+        return 0;
       }
-      return 0;
+      return 1;
     }
   }
-  saveMatrix() {
+  saveMatrix(){
     for (let i = 0; i < curMatrix.length; i++) {
-      this.preMatrix[i] = [...curMatrix[i]];
+      this.preMatrix[i]=[...curMatrix[i]];
+      
     }
   }
-  checkMatrix() {
+  checkMatrix(){
     for (let i = 0; i < curMatrix.length; i++) {
       for (let j = 0; j < curMatrix.length; j++) {
-        if (this.preMatrix[i][j] != curMatrix[i][j]) {
+        if (this.preMatrix[i][j]!=curMatrix[i][j]) {
           return 1;
         }
       }
+    }
+    var checkMove= this.validMatrix();
+    if (checkMove===0) {
+      console.log('end game');
+      var panel= new Panel();
+      panel.createPanel('lose');
+      gameOver=1;
     }
     return 0;
   }
@@ -144,7 +82,9 @@ class Matrix {
     var pool = [2, 2, 2, 2, 2, 2, 2, 2, 4, 4];
     var i = 0;
     var isValid = this.validMatrix();
-    if (isValid == 0) {
+    if (isValid==0) {
+      console.log('gameOver');
+      gameOver=1;
       return;
     }
     while (i < num) {
@@ -212,10 +152,10 @@ class Matrix {
           }
         }
       }
-    } else if (dir == 37) {
+    } else if (dir==37) {
       for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 4; j++) {
-          if (curMatrix[i][j] != 0) {
+          if (curMatrix[i][j]!=0) {
             stackBlock[count] = {
               item: document.getElementsByClassName("row " + i)[0].childNodes[j]
                 .childNodes[0],
@@ -275,7 +215,7 @@ class Matrix {
         return { blank, mergeFlag };
       }
       for (let i = col + 1; i < 4; i++) {
-        if (curMatrix[row][i] == 0) {
+        if (curMatrix[row][i]==0) {
           blank++;
         } else if (curMatrix[row][i] == curMatrix[row][col]) {
           if (preFlag == 1) {
@@ -288,7 +228,7 @@ class Matrix {
         }
       }
       return { blank, mergeFlag };
-    } else if (dir === 37) {
+    }else if (dir===37) {
       if (col == 0) {
         return { blank, mergeFlag };
       }
@@ -340,7 +280,7 @@ class Matrix {
       e.item.appendChild(cssAnimation);
       e.item.style.animation = `slider${id} 300ms`;
       setTimeout(() => {
-        moving = 0;
+        moving=0;
         e.item.style.top = nextPos;
         e.item.removeAttribute("style");
         e.item.removeChild(e.item.childNodes[1]);
@@ -352,12 +292,12 @@ class Matrix {
           e.item.childNodes[0].innerHTML = `${parseInt(
             e.item.childNodes[0].innerText
           ) * 2}`;
-          var temp = parseInt(e.item.childNodes[0].innerText) / 2;
+          var temp=parseInt(e.item.childNodes[0].innerText)/2;
           e.item.classList.remove(`num${temp}`);
-          e.item.classList.add(`num${e.item.childNodes[0].innerText}`);
+          e.item.classList.add(`num${e.item.childNodes[0].innerText}`);  
         }
       }, 250);
-    } else if (dir == 39 || dir == 37) {
+    } else if (dir == 39||dir==37) {
       var nextCol = curCol + distance1.blank;
       curMatrix[curRow][curCol] = 0;
       if (distance1.mergeFlag == 1 && preFlag == 0) {
@@ -367,9 +307,8 @@ class Matrix {
       } else {
         curMatrix[curRow][nextCol] = parseInt(e.item.childNodes[0].innerText);
       }
-      var nextPos =
-        document.getElementsByClassName("row " + curRow)[0].childNodes[nextCol]
-          .offsetLeft + 1;
+      var nextPos = document.getElementsByClassName("row " + curRow)[0]
+        .childNodes[nextCol].offsetLeft+1;
       var cssAnimation = document.createElement("style");
       cssAnimation.type = "text/css";
       var rules = document.createTextNode(
@@ -383,7 +322,7 @@ class Matrix {
       e.item.appendChild(cssAnimation);
       e.item.style.animation = `slider${id} 300ms`;
       setTimeout(() => {
-        moving = 0;
+        moving=0;
         e.item.style.left = nextPos;
         e.item.removeAttribute("style");
         e.item.removeChild(e.item.childNodes[1]);
@@ -395,42 +334,38 @@ class Matrix {
           e.item.childNodes[0].innerHTML = `${parseInt(
             e.item.childNodes[0].innerText
           ) * 2}`;
-          var temp = parseInt(e.item.childNodes[0].innerText) / 2;
+          var temp=parseInt(e.item.childNodes[0].innerText)/2;
           e.item.classList.remove(`num${temp}`);
-          e.item.classList.add(`num${e.item.childNodes[0].innerText}`);
+          e.item.classList.add(`num${e.item.childNodes[0].innerText}`);          
         }
       }, 250);
     }
-    if (id == stackBlock.length - 1) {
+    if (id==stackBlock.length-1) {
       this.checkWin();
-      if (this.checkMatrix() == 0) {
+      if (this.checkMatrix()==0) {
         return;
       }
-      setTimeout(() => {
+      setTimeout(()=>{
         this.generateNumber(1);
-        this.validMatrix();
-        if (this.checkLose() == 0) {
-          gameOver = 1;
-        }
-      }, 350);
+      },350);
     }
   }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  var panel = new Panel();
+  panel.startGame();
   var board = new Board();
   board.render();
   var matrix = new Matrix();
   matrix.generateNumber(2);
-  var panel = new Panel();
-  panel.levelSelect();
+
   document.addEventListener("keydown", event => {
-    if (gameOver == 1) {
-      panel.createPanel("lose");
+    if (gameOver==1) {
       return;
     }
-    if (event.keyCode === arrowKey.down && moving == 0) {
-      moving = 1;
+    if (event.keyCode === arrowKey.down && moving==0) {
+      moving=1;
       matrix.collectstack(arrowKey.down);
       matrix.saveMatrix();
       for (let i = 0; i < stackBlock.length; i++) {
@@ -441,8 +376,8 @@ document.addEventListener("DOMContentLoaded", () => {
           arrowKey.down
         );
       }
-    } else if (event.keyCode === arrowKey.up && moving == 0) {
-      moving = 1;
+    } else if (event.keyCode === arrowKey.up && moving==0) {
+      moving=1;
       matrix.collectstack(arrowKey.up);
       matrix.saveMatrix();
       for (let i = 0; i < stackBlock.length; i++) {
@@ -453,8 +388,8 @@ document.addEventListener("DOMContentLoaded", () => {
           arrowKey.up
         );
       }
-    } else if (event.keyCode === arrowKey.right && moving == 0) {
-      moving = 1;
+    } else if (event.keyCode === arrowKey.right && moving==0) {
+      moving=1;
       matrix.collectstack(arrowKey.right);
       matrix.saveMatrix();
       for (let i = 0; i < stackBlock.length; i++) {
@@ -465,8 +400,8 @@ document.addEventListener("DOMContentLoaded", () => {
           arrowKey.right
         );
       }
-    } else if (event.keyCode === arrowKey.left && moving == 0) {
-      moving = 1;
+    }else if (event.keyCode===arrowKey.left && moving==0) {
+      moving=1;
       matrix.collectstack(arrowKey.left);
       matrix.saveMatrix();
       for (let i = 0; i < stackBlock.length; i++) {
@@ -480,5 +415,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-new Matrix();
+var matrix = new Matrix();
