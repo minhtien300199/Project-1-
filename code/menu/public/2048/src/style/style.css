@@ -236,3 +236,10 @@ box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 9px
     -webkit-animation-name: fadeOutDown;
     animation-name: fadeOutDown;
 }
+.ui-footer{
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 10px;
+    left: 5px;
+}
