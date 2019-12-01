@@ -1,4 +1,5 @@
 var noReverseFlag=0;
+var secondLife=0;
 class Board {
     constructor(){
         this.noRow=12;

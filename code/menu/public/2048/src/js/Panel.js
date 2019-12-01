@@ -19,11 +19,25 @@ class Panel {
         panelText.setAttribute('class','panel-text');
         panelText.innerHTML= winPromp;
         var btnRetry = document.createElement('button');
-        btnRetry.addEventListener('click',()=>{
-            location.reload();
-        });
-        btnRetry.setAttribute('class','btn retry');
-        btnRetry.innerHTML='Retry';
+        if (gameCondition==='win'){
+            btnRetry.setAttribute('class','btn confirm');
+            btnRetry.innerHTML='Continue';
+            btnRetry.addEventListener('click',()=>{
+            innerDiv.classList.add('fadeOutDown');
+            setTimeout(()=>{
+                overlay.classList.add('hidden');
+                
+            },1200);
+            gameOver=0;
+            continueFlag=1;
+        })
+        }else{
+            btnRetry.addEventListener('click',()=>{
+                location.reload();
+            });
+            btnRetry.setAttribute('class','btn retry');
+            btnRetry.innerHTML='Retry';
+        }
         var btnHome = document.createElement('button');
         btnHome.setAttribute('class','btn home ');
         btnHome.innerHTML='Home';

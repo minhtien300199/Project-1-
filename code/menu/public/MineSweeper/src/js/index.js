@@ -105,13 +105,16 @@ class Cell {
         }
     }
     cellClick(curRow,curCol){
-        if (document.getElementsByClassName('row '+ curRow)[0].childNodes[curCol].classList.contains('mark')==true) {
+        // if (this.checkMine(curRow,curCol)===-1 && secondLife===0) {
+            
+        // }
+        if (document.getElementsByClassName('row '+ curRow)[0].childNodes[curCol].classList.contains('mark')===true) {
             return;
         }
         //nếu = 0 thì loang xung quanh
         if (this.checkMine(curRow,curCol)===0) {
             this.spreadCell(curRow,curCol);
-        }else if (this.checkMine(curRow,curCol)===-1) {
+        }else if (this.checkMine(curRow,curCol)===-1) { //là bom
             this.showAllMine(curRow,curCol);
             var panel = new Panel();
             panel.createPanel('lose');

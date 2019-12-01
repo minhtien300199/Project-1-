@@ -3,6 +3,7 @@
 // };
 var moving=0;
 var startFlag=0;
+var score=0;
 var map = {
     38: 0, // Up
     39: 1, // Right
@@ -13,6 +14,7 @@ var map = {
     74: 2,
     72: 3  
 };
+var continueFlag=0;
 var gameOver=0;
 var stackBlock=[];
 var curMatrix=[

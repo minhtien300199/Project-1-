@@ -454,4 +454,12 @@ document.addEventListener("DOMContentLoaded", function() {
   document
     .getElementById("playAgainBtn")
     .addEventListener("click", finishGameBtn);
+  document.addEventListener("keydown",(e)=>{
+if (e.keyCode>=97 && e.keyCode<106) {
+  if (selectedCell.length===0) {
+    return;
+  }
+    var temp= handleTouchPadCellClick('a',e.keyCode-97)
+    temp();
+}  });
 });

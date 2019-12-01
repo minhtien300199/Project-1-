@@ -65,6 +65,7 @@ var renderNum = function (max) {
       "click",
       handleTouchPadCellClick(innerDiv, index)
     );
+
     container.appendChild(innerDiv);
   }
 };

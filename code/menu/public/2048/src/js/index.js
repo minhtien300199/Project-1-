@@ -9,7 +9,10 @@ class Matrix {
   checkWin(){
     for (let i = 0; i < curMatrix.length; i++) {
       for (let j = 0; j < curMatrix.length; j++) {
-        if (curMatrix[i][j]==2048) {
+        if (curMatrix[i][j]==2048 && continueFlag==0) {
+          var panel = new Panel();
+          panel.createPanel('win');
+          gameOver=1;
           console.log('win!');
         }
       }
@@ -90,6 +93,7 @@ class Matrix {
     while (i < num) {
       if (curMatrix[row][col] == 0) {
         var randomize = this.getRndInteger(0, 9);
+        //pool[randomize]
         curMatrix[row][col] = pool[randomize];
         var holder = document.createElement("div");
         holder.setAttribute("class", `holder num${pool[randomize]}`);
@@ -293,8 +297,17 @@ class Matrix {
             e.item.childNodes[0].innerText
           ) * 2}`;
           var temp=parseInt(e.item.childNodes[0].innerText)/2;
-          e.item.classList.remove(`num${temp}`);
-          e.item.classList.add(`num${e.item.childNodes[0].innerText}`);  
+          score+=parseInt(e.item.childNodes[0].innerText);
+          document.getElementsByClassName('score')[0].innerHTML=score;
+          if (temp>=2048){
+            if (e.item.classList.contains(`num${temp}`)===true){
+              e.item.classList.remove(`num${temp}`);
+              e.item.classList.add(`above`);  
+            }
+          }else{
+            e.item.classList.remove(`num${temp}`);
+            e.item.classList.add(`num${e.item.childNodes[0].innerText}`);  
+          }
         }
       }, 250);
     } else if (dir == 39||dir==37) {
@@ -335,8 +348,17 @@ class Matrix {
             e.item.childNodes[0].innerText
           ) * 2}`;
           var temp=parseInt(e.item.childNodes[0].innerText)/2;
-          e.item.classList.remove(`num${temp}`);
-          e.item.classList.add(`num${e.item.childNodes[0].innerText}`);          
+          score+=parseInt(e.item.childNodes[0].innerText);
+          document.getElementsByClassName('score')[0].innerHTML=score;
+          if (temp>=2048){
+            if (e.item.classList.contains(`num${temp}`)===true){
+              e.item.classList.remove(`num${temp}`);
+              e.item.classList.add(`above`);  
+            }
+          }else {
+            e.item.classList.remove(`num${temp}`);
+            e.item.classList.add(`num${e.item.childNodes[0].innerText}`);          
+          }
         }
       }, 250);
     }
@@ -362,6 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("keydown", event => {
     if (gameOver==1) {
+      
       return;
     }
     if (event.keyCode === arrowKey.down && moving==0) {
